@@ -16,7 +16,6 @@ function EntrenadoresPage() {
             setLoading(true);
             setError(null);
             try {
-                // 1. Obtener todas las CATEGORÍAS (espera array)
                 const categoriasData = await getAllCategorias(); // Usa la nueva función API
                 console.log("Datos de categorías recibidos:", categoriasData);
 
