@@ -64,8 +64,7 @@ function App() {
                         {/* Rutas Socio */}
                         <Route path="/mis-cuotas" element={<ProtectedRoute allowedRoles={rolesSocio}><MisCuotasPage /></ProtectedRoute>} />
                         {/* Ya no necesitas /cuotas/pagar/:id si el pago inicia en mis-cuotas */}
-                        {/* <Route path="/cuotas/pagar/:id" element={<ProtectedRoute allowedRoles={rolesSocio}><PagarCuotaPage /></ProtectedRoute>} /> */}
-
+                        <Route path="/pagar-cuota/:cuotaId" element={<PagarCuotaPage />} />
                         {/* Rutas Gestión Deportes */}
                         <Route path="/deportes" element={<ProtectedRoute allowedRoles={rolesGestionDeportes}><DeportesPage /></ProtectedRoute>} />
 
