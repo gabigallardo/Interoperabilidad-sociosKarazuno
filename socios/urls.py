@@ -12,6 +12,7 @@ from socios.views import (
     EventoViewSet, NivelSocioViewSet, SocioInfoViewSet,
     DisciplinaViewSet, CategoriaViewSet, CuotaViewSet
 )
+from .views.pago import CrearPreferenciaPagoView 
 
 router = routers.DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet, 'usuarios')
@@ -39,5 +40,6 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
         # Endpoint para registro
     path("register/", RegisterView.as_view(), name="register"),
+    path('pagos/crear-preferencia/', CrearPreferenciaPagoView.as_view(), name='crear_preferencia_pago'),
 
 ]
