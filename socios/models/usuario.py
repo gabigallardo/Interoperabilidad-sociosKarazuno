@@ -14,12 +14,13 @@ class Usuario(models.Model):
         ("otro", "Otro"),
     ]
 
-    tipo_documento = models.CharField(max_length=50)
-    nro_documento = models.CharField(max_length=50, unique=True)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
+    tipo_documento = models.CharField(max_length=50, null=True, blank=True)
+    nro_documento = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    nombre = models.CharField(max_length=100, null=True, blank=True)
+    apellido = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(unique=True)
-    contrasena = models.CharField(max_length=255)
+    contrasena = models.CharField(max_length=255, null=True, blank=True)
+
     telefono = models.CharField(max_length=50, blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     direccion = models.TextField(blank=True, null=True)
@@ -33,8 +34,7 @@ class Usuario(models.Model):
     disciplinas_a_cargo = models.ManyToManyField(
         Disciplina,
         blank=True, 
-        related_name='entrenadores', 
-        limit_choices_to={'roles__nombre': 'Entrenador'}
+        related_name='entrenadores'
     )
 
     @property

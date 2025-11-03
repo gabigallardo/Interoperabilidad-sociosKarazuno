@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/User.Context.jsx";
 import { FaMoneyBillWave, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import PagarCuotaButton from '../../components/PagarCuotaButton'; // *** IMPORTADO ***
+import PagarCuotaButton from '../../components/PagarCuotaButton'; 
 
 export default function MisCuotasPage() {
     const { user } = useContext(UserContext);

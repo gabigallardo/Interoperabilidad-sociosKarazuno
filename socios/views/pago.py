@@ -12,7 +12,6 @@ class CrearPreferenciaPagoView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
-        # 1. Validar datos de entrada (opcional pero recomendado)
         cuota_id = request.data.get('cuota_id')
         monto_cuota = request.data.get('monto')
         descripcion_cuota = request.data.get('descripcion')
@@ -28,48 +27,41 @@ class CrearPreferenciaPagoView(APIView):
             return Response({'error': 'El monto debe ser un número válido.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-        # 2. Inicializar SDK
+        # Inicializar SDK
         try:
             sdk = mercadopago.SDK(settings.MERCADOPAGO_ACCESS_TOKEN)
         except Exception as e:
              print(f"Error al inicializar SDK de Mercado Pago: {e}")
-             # Podría ser un problema con el Access Token en settings.py
              return Response({'error': 'Error de configuración del servicio de pago.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-        # 3. Preparar datos de preferencia
         preference_data = {
             "items": [
                 {
-                    "id": str(cuota_id), # Asegúrate que sea string
-                    "title": str(descripcion_cuota), # Asegúrate que sea string
+                    "id": str(cuota_id), 
+                    "title": str(descripcion_cuota), 
                     "quantity": 1,
-                    "unit_price": monto_float, # Usar el float validado
-                    "currency_id": "ARS" # Revisa que sea la moneda correcta para tu cuenta MP
+                    "unit_price": monto_float, 
+                    "currency_id": "ARS" 
                 }
             ],
             "payer": {
-                # Asegúrate que el email sea válido
                 "email": getattr(request.user, 'email', None),
             },
             "back_urls": {
-                "success": "http://localhost:5173/cuotasP/exitoso", # URL Frontend
-                "failure": "http://localhost:5173/cuotasP/fallido", # URL Frontend
-                "pending": "http://localhost:5173/cuotasP/pendiente" # URL Frontend
+                "success": "http://localhost:5173/cuotasP/exitoso", 
+                "failure": "http://localhost:5173/cuotasP/fallido", 
+                "pending": "http://localhost:5173/cuotasP/pendiente" 
             },
-            # "auto_return": "approved",
-            # "notification_url": "TU_URL_HTTPS_PARA_WEBHOOKS", # Descomenta y configura si usas webhooks
             "external_reference": f"cuota_{cuota_id}_user_{request.user.id}",
         }
 
-        # Validar email del pagador
         if not preference_data["payer"]["email"]:
              print(f"Usuario {request.user.id} no tiene email configurado.")
              return Response({'error': 'Falta el email del usuario para el pago.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-        # 4. Intentar crear la preferencia y manejar errores específicos
-        preference_response = None # Inicializa por si falla antes de la asignación
+        preference_response = None 
         try:
             print("--- Enviando datos a Mercado Pago ---")
             print(json.dumps(preference_data, indent=2))
@@ -79,7 +71,6 @@ class CrearPreferenciaPagoView(APIView):
             print("--- Respuesta COMPLETA de Mercado Pago SDK ---")
             print(json.dumps(preference_response, indent=2)) # Loguea TODO lo que responde MP
 
-            # VERIFICACIÓN CLAVE: Chequea si la respuesta contiene 'response' y 'id' antes de usarlos
             if isinstance(preference_response, dict) and \
                "response" in preference_response and \
                isinstance(preference_response["response"], dict) and \

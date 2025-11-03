@@ -1,3 +1,5 @@
+# socios/urls.py
+
 from django.urls import path, include
 from rest_framework import routers
 from drf_spectacular.views import (
@@ -15,6 +17,8 @@ from socios.views import (
     EventoViewSet, NivelSocioViewSet, SocioInfoViewSet,
     DisciplinaViewSet, CategoriaViewSet, CuotaViewSet
 )
+from socios.views.auth import google_login_view 
+
 from .views.pago import CrearPreferenciaPagoView 
 
 router = routers.DefaultRouter()
@@ -39,13 +43,16 @@ urlpatterns = [
 
     # Documentación alternativa con Redoc
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-    # Endpoint para login
+    
+    # --- RUTAS DE AUTENTICACIÓN ---
     path("login/", LoginView.as_view(), name="login"),
-        # Endpoint para registro
     path("register/", RegisterView.as_view(), name="register"),
+    # --- AÑADIR ESTA LÍNEA ---
+    path("google-login/", google_login_view, name="google_login"),
+    # --- FIN DE LA ADICIÓN ---
+    
     path('pagos/crear-preferencia/', CrearPreferenciaPagoView.as_view(), name='crear_preferencia_pago'),
 
     path("soap/eventos/", EventoSoapView.as_view(), name="soap_eventos"),
     path('api/eventos-soap/', EventosSOAPView.as_view(), name='eventos_soap_api'),
-
 ]

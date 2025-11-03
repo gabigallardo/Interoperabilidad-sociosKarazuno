@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'django_crud_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sociosKarazunoFi',        
+        'NAME': 'socioskarazunofei',        
         'USER': 'postgres',          
         'PASSWORD': '1234', 
         'HOST': 'localhost',         # O '127.0.0.1'
@@ -141,3 +141,4 @@ REST_FRAMEWORK = {
 }
 MERCADOPAGO_ACCESS_TOKEN = 'TEST-3763200358962958-102817-7b65e755cc9a77281d1b65f1423fe777-229381348'
 MERCADOPAGO_PUBLIC_KEY = 'TEST-abbad693-4bb5-4e40-8037-f32e31729208'
+GOOGLE_CLIENT_ID = '1049192071464-8hjl1eapngul9iglm7ro0hvq50kc43f8.apps.googleusercontent.com'
