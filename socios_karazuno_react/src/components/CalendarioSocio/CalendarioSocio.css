@@ -1,0 +1,120 @@
+.calendario-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.calendario-card {
+  background: #fff;
+  border: 2px solid #f8d7da;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.calendario-card:hover {
+  transform: translateY(-3px);
+}
+
+.titulo-calendario {
+  color: #b71c1c;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f8d7da;
+  padding-bottom: 5px;
+}
+
+.calendar-wrapper {
+  background: #fffafa;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.react-calendar {
+  border: none;
+  width: 100%;
+  background: transparent;
+  font-family: inherit;
+}
+
+.react-calendar__tile {
+  border-radius: 8px;
+  padding: 8px 0;
+}
+
+.react-calendar__tile--now {
+  background: #ffe6e6 !important;
+  border-radius: 10px;
+}
+
+.tiene-evento {
+  background-color: #e53935 !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.react-calendar__tile:hover {
+  background: #ffd6d6;
+}
+
+.eventos-lista {
+  margin-top: 16px;
+}
+
+.eventos-lista h3 {
+  font-size: 1.1rem;
+  color: #b71c1c;
+  font-weight: 600;
+  border-bottom: 1px solid #f8d7da;
+  padding-bottom: 4px;
+}
+
+.eventos-lista span {
+  color: #333;
+}
+
+.sin-eventos {
+  color: #888;
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.evento-item {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.evento-info {
+  background: #fff0f0;
+  border-left: 4px solid #e53935;
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 5px rgba(229, 57, 53, 0.1);
+  transition: background 0.3s;
+}
+
+.evento-info:hover {
+  background: #ffe6e6;
+}
+
+.evento-info h4 {
+  margin: 0;
+  color: #b71c1c;
+  font-weight: 600;
+}
+
+.evento-info p {
+  margin: 3px 0 0;
+  font-size: 0.9rem;
+  color: #444;
+}

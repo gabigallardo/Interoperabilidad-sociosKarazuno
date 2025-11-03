@@ -6,6 +6,9 @@ from drf_spectacular.views import (
     SpectacularRedocView,
 )
 
+from socios.soap.services import EventoSoapView
+from .views.eventos_soap import EventosSOAPView
+
 
 from socios.views import (
     LoginView, RegisterView, UsuarioViewSet, RolesViewSet,
@@ -41,5 +44,8 @@ urlpatterns = [
         # Endpoint para registro
     path("register/", RegisterView.as_view(), name="register"),
     path('pagos/crear-preferencia/', CrearPreferenciaPagoView.as_view(), name='crear_preferencia_pago'),
+
+    path("soap/eventos/", EventoSoapView.as_view(), name="soap_eventos"),
+    path('api/eventos-soap/', EventosSOAPView.as_view(), name='eventos_soap_api'),
 
 ]
